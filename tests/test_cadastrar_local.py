@@ -12,14 +12,15 @@ def test_cadastrar_local(
     local_name:str = "Local Teste"
 ) -> None:
     
-    """Testa o cadastramento de locais
+    """Testa a funcionalidade cadastramento de locais
 
     Args:
         driver (WebDriver): Driver selenium
         waits (Waits): Waits selenium
-        user_name (str, optional): . Defaults to "teste fulano".
-        user_email (str, optional): . Defaults to "teste@email.com".
-        user_password (str, optional): . Defaults to "teste123456789@teste".
+        user_name (str, optional): . to "teste fulano".
+        user_email (str, optional):   to "teste@email.com".
+        user_password (str, optional): . to "teste123456789@teste".
+        local_name (str, optional): . to "Local Teste".
     """
     
     url = "http://medidasincendio.test/login"
