@@ -6,7 +6,7 @@ from random import choices, randint
 from string import ascii_lowercase
 from pathlib import Path
 
-def test_cadastrar_local(
+def test_cadastrar_extintor(
     driver:WebDriver, 
     waits:Waits, 
     user_email:str = "teste@email.com" , 
@@ -96,16 +96,74 @@ def test_cadastrar_local(
     
     sleep(0.5)
     
-    driver.get("http://medidasincendio.test/locais")
-    
-    locais_name = waits.wait_visibility_all(
+    tipo_medida = waits.wait_visibility(
         {
-            "css_selector" : 'div[class="font-thin drop-shadow-text font-display text-2xl mb-2 whitespace-nowrap text-center text-white"]'
+            "css_selector" : 'select[id="tipo_id"]'
         }
     )
     
-    for local in locais_name:
-        if local.text == f"Auditório: {local_name}":
-            break
-        
-    assert local.text == f"Auditório: {local_name}"
+    tipo_medida_select = Select(tipo_medida)
+    
+    tipo_medida_select.select_by_value("6")
+    
+    input_quantidade_medida = waits.wait_clickable(
+        {
+            "css_selector" : 'input[name="quantidade[]"]'
+        }
+    )
+    
+    input_quantidade_medida.send_keys(1)
+    
+    waits.wait_visibility(
+        {
+            "css_selector" : 'div[class="p-4 sm:p-8 flex flex-col bg-white shadow sm:rounded-lg"] div[class="mt-2"] button[type="submit"]'
+        }
+    ).click()
+    
+    
+    waits.wait_clickable(
+        {
+            "css_selector" : 'input[id="1"]'
+        }
+    ).click()
+    
+    waits.wait_clickable(
+        {
+            "css_selector" : 'input[id="selo"]'
+        }
+    ).send_keys(
+        "".join(choices(ascii_lowercase, k=randint(4, 5)))
+    )
+    
+    
+    waits.wait_clickable(
+        {
+            "css_selector" : 'input[id="capacidade"]'
+        }
+    ).send_keys(
+        5
+    )
+    
+    waits.wait_clickable(
+        {
+            "css_selector" : 'input[id="validade"]'
+        }
+    ).send_keys(
+        "01/01/2026"
+    )
+    
+    cadastrar_extintor = waits.wait_clickable(
+        {
+            "css_selector" : 'button[type="submit"]'
+        }
+    )
+    
+    cadastrar_extintor.click()
+    
+    sucess_extintor = waits.wait_visibility(
+        {
+            "css_selector" : 'div p.text-sm.text-gray-600'
+        }
+    )
+    
+    assert sucess_extintor.text == "Extintor cadastrado com sucesso."

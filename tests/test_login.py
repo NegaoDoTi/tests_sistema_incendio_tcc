@@ -2,7 +2,14 @@ from utils.waits import Waits
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
 
-def test_login(driver:WebDriver, waits:Waits, user_name:str = "teste fulano", user_email:str = "teste@email.com" , user_password:str = "teste123456789@teste") -> None:
+def test_login(
+    driver:WebDriver, 
+    waits:Waits, 
+    user_name:str = "teste fulano", 
+    user_email:str = "teste@email.com" , 
+    user_password:str = "teste123456789@teste"
+) -> None:
+    
     """Testa se o login esta funcionando corretamente
 
     Args:
