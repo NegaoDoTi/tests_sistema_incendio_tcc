@@ -13,7 +13,7 @@ def test_cadastrar_extintor(
     user_password:str = "teste123456789@teste"
 ) -> None:
     
-    """Testa a funcionalidade cadastramento de locais
+    """Testa de cadastrar extintor CT6
 
     Args:
         driver (WebDriver): Driver selenium

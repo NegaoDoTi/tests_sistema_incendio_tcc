@@ -6,8 +6,8 @@ from string import ascii_lowercase, digits
 
 
 def test_register(driver:WebDriver, waits:Waits) -> None:
-    """Teste de registro de usuarios
-
+    """Teste de registro de usuarios CT2
+ 
     Args:
         driver (WebDriver): Driver Selenium
         waits (Waits): Waits Selenium

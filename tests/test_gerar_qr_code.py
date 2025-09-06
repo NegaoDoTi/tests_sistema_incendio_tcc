@@ -15,7 +15,7 @@ def test_gerar_qrcode(
     user_password:str = "teste123456789@teste"
 ) -> None:
     
-    """Testa se o login esta funcionando corretamente
+    """Teste de gerar qr code CT7
 
     Args:
         driver (WebDriver): Driver selenium

@@ -6,7 +6,7 @@ from string import ascii_lowercase, digits
 
 
 def test_delete_acount(driver:WebDriver, waits:Waits) -> None:
-    """Teste de registro de usuarios
+    """Teste de deletar conta de usuario CT4
 
     Args:
         driver (WebDriver): Driver Selenium
