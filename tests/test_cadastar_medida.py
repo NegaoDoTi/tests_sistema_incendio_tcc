@@ -13,7 +13,7 @@ def test_cadastrar_medida(
     user_password:str = "teste123456789@teste"
 ) -> None:
     
-    """Testa a funcionalidade cadastramento de locais
+    """Testa cadastrar medida de incendio CT5
 
     Args:
         driver (WebDriver): Driver selenium

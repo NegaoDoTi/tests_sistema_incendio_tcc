@@ -10,7 +10,7 @@ def test_login(
     user_password:str = "teste123456789@teste"
 ) -> None:
     
-    """Testa se o login esta funcionando corretamente
+    """Testa se o login esta funcionando corretamente CT 1
 
     Args:
         driver (WebDriver): Driver selenium
