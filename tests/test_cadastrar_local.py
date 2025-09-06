@@ -2,14 +2,15 @@ from utils.waits import Waits
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import Select
+from random import choices, randint
+from string import ascii_lowercase
 from pathlib import Path
 
 def test_cadastrar_local(
     driver:WebDriver, 
     waits:Waits, 
     user_email:str = "teste@email.com" , 
-    user_password:str = "teste123456789@teste", 
-    local_name:str = "Local Teste"
+    user_password:str = "teste123456789@teste"
 ) -> None:
     
     """Testa a funcionalidade cadastramento de locais
@@ -20,7 +21,6 @@ def test_cadastrar_local(
         user_name (str, optional): . to "teste fulano".
         user_email (str, optional):   to "teste@email.com".
         user_password (str, optional): . to "teste123456789@teste".
-        local_name (str, optional): . to "Local Teste".
     """
     
     url = "http://medidasincendio.test/login"
@@ -44,6 +44,8 @@ def test_cadastrar_local(
     driver.get('http://medidasincendio.test/locais/cadastrar')
     
     'form section button[type="submit"]'
+    
+    local_name = user_name = "".join(choices(ascii_lowercase, k=randint(8, 15)))
     
     local_name_input = waits.wait_visibility({'css_selector' : 'input[id="nome"]'})
     
