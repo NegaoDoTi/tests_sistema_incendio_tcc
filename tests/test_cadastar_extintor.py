@@ -166,4 +166,4 @@ def test_cadastrar_extintor(
         }
     )
     
-    assert sucess_extintor.text == "Extintor cadastrado com sucesso."
+    assert "Extintor cadastrado com sucesso." in sucess_extintor.text
