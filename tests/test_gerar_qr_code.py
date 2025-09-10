@@ -5,7 +5,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from requests import get
 from uuid import uuid4
 from pathlib import Path
-from cv2 import QRCodeDetector, cvtColor, imread
 
 def test_gerar_qrcode(
     driver:WebDriver, 
@@ -25,6 +24,12 @@ def test_gerar_qrcode(
         user_password (str, optional): . Defaults to "teste123456789@teste".
     """
     
+    
+    qrcodes_path = Path(Path(__file__).parent.parent, "qrcodes")
+    
+    if not qrcodes_path.exists():
+        qrcodes_path.mkdir()     
+
     url = "http://medidasincendio.test/login"
     
     driver.get(url)
@@ -73,8 +78,6 @@ def test_gerar_qrcode(
     
     assert response.status_code == 200
     
-    qrcodes_path = Path(Path(__file__).parent.parent, "qrcodes")
-    
     qrcode_image_path = Path(f"{qrcodes_path}/{uuid4()}.png")
     
     with open(f"{qrcode_image_path}", "wb") as qrcode_image:
@@ -86,15 +89,23 @@ def test_gerar_qrcode(
     assert qrcode_image_path.exists()
     
     assert qrcode_image_path.suffix == ".png"
+
+    img = cv2.imread(str(qrcode_image_path))
+
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    _, binarized = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+
+    binarized = cv2.bitwise_not(binarized)
+
+    detector = cv2.QRCodeDetector()
+
+    data, bbox, straight_qrcode = detector.detectAndDecode(binarized)
     
-    detector = QRCodeDetector()
+    for file in qrcodes_path.iterdir():
+            if file.is_file():
+                file.unlink()
     
-    iamge = imread(qrcode_image_path)
-    
-    image_gray = cvtColor(iamge, cv2.COLOR_BGR2GRAY)
-    
-    dados, bbox, _ = detector.detectAndDecode(image_gray)
-    
-    assert dados == f"http://medidasincendio.test/mobile/locais/{local_id}"
+    assert data == f"http://medidasincendio.test/mobile/locais/{local_id}"
     
     
