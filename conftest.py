@@ -1,6 +1,8 @@
 import pytest
 from utils.driver import Driver  
 from utils.waits import Waits
+from pathlib import Path
+from json import load
 
 @pytest.fixture(scope="function")
 def driver():
@@ -30,3 +32,29 @@ def waits(driver):
         Waits: classe de waits para selenium
     """
     return Waits(driver)
+
+
+def load_data(arquivo):
+
+    caminho = Path(Path(__file__).parent, arquivo)
+    if not caminho.exists():
+        raise FileNotFoundError(f"Arquivo de dados não encontrado: {caminho}")
+
+
+    elif caminho.suffix == ".json":
+        with open(caminho, encoding="utf-8") as f:
+            dados = load(f)
+            if not isinstance(dados, list):
+                raise ValueError("O JSON precisa ser uma lista de objetos")
+            return [tuple(d.values()) for d in dados]
+
+    else:
+        raise ValueError("Formato de arquivo não suportado use JSON)")
+    
+    
+@pytest.fixture
+def dados_teste(request):
+    """
+    Fixture que recebe o caminho do arquivo via `pytest.mark.parametrize(indirect=True)`.
+    """
+    return load_data(request.param)

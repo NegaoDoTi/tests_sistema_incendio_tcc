@@ -1,0 +1,12 @@
+[
+  {"nome": "João", "email": "joao@teste.com", "senha": "senha123789963@#$", "esperado": true},
+  {"nome": "", "email": "semnome@teste.com", "senha": "senha123", "esperado": false},
+  {"nome": "Maria", "email": "emailinvalido", "senha": "123", "esperado": false},
+  {"nome": "luiz", "email": "luiz@teste.com", "senha": "senha123789963@#$", "esperado": true},
+  {"nome": "laiza", "email": "laiza@email.com", "senha": "senha123789963@#$", "esperado": true},
+  {"nome": "carlos", "email": "testehotmail.com", "senha": "carlossenha123", "esperado": false},
+  {"nome": "12345", "email": "12345@hotmail.com", "senha": "123456teste", "esperado": false},
+  {"nome": "semnome", "email": "semnome@teste.com", "senha": "senha123789963@#$", "esperado": true},
+  {"nome": "leonardo", "email": "", "senha": "leonardo123", "esperado": false},
+  {"nome": "andre", "email": "andre@gmail.com", "senha": "", "esperado": false}
+]
