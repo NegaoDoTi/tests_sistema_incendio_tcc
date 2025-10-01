@@ -16,9 +16,7 @@ def test_login(
     Args:
         driver (WebDriver): Driver selenium
         waits (Waits): Waits selenium
-        user_name (str, optional): . Defaults to "teste fulano".
-        user_email (str, optional): . Defaults to "teste@email.com".
-        user_password (str, optional): . Defaults to "teste123456789@teste".
+        dados_teste (list): lista de tuplas com os dados de teste
     """
     duracoes = []
     

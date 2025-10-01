@@ -11,6 +11,7 @@ def test_delete_acount(driver:WebDriver, waits:Waits, dados_teste) -> None:
     Args:
         driver (WebDriver): Driver Selenium
         waits (Waits): Waits Selenium
+        dados_teste (list): lista de tuplas com os dados de teste
     """
     duracoes = []
     for nome, email, senha, esperado in dados_teste:

@@ -12,7 +12,7 @@ def test_register(driver:WebDriver, waits:Waits, dados_teste) -> None:
     Args:
         driver (WebDriver): Driver Selenium
         waits (Waits): Waits Selenium
-    
+        dados_teste (list): lista de tuplas com os dados de teste
     """
     
     duracoes = []
