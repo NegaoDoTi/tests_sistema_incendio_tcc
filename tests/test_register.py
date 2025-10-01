@@ -1,7 +1,6 @@
 from utils.waits import Waits
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
-from json import load
 from datetime import datetime
 import pytest
 
