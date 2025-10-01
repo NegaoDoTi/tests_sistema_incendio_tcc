@@ -35,6 +35,19 @@ def waits(driver):
 
 
 def load_data(arquivo):
+    """Função que carrega os dados de um arquivo JSON e retorna uma lista de tuplas.
+
+    Args:
+        arquivo (file): Nome do arquivo JSON
+
+    Raises:
+        FileNotFoundError: Arquivo não encontrado
+        ValueError: O JSON precisa ser uma lista de objetos
+        ValueError: Formato de arquivo não suportado use JSON
+
+    Returns:
+        list: list[tuples]
+    """
 
     caminho = Path(Path(__file__).parent, arquivo)
     if not caminho.exists():
@@ -49,12 +62,16 @@ def load_data(arquivo):
             return [tuple(d.values()) for d in dados]
 
     else:
-        raise ValueError("Formato de arquivo não suportado use JSON)")
-    
+        raise ValueError("Formato de arquivo não suportado use JSON")
     
 @pytest.fixture
 def dados_teste(request):
-    """
-    Fixture que recebe o caminho do arquivo via `pytest.mark.parametrize(indirect=True)`.
+    """Fixture que recebe o caminho do arquivo via `pytest.mark.parametrize(indirect=True)`.
+
+    Args:
+        request: pytest.mark.parametrize(indirect=True)
+
+    Returns:
+        list: list[tuples]
     """
     return load_data(request.param)

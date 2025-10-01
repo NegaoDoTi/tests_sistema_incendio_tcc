@@ -6,7 +6,6 @@ from datetime import datetime
 import pytest
 
 @pytest.mark.parametrize("dados_teste", ["users.json"], indirect=True)
-
 def test_register(driver:WebDriver, waits:Waits, dados_teste) -> None:
     """Teste de registro de usuarios CT2
  
