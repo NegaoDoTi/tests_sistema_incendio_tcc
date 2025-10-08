@@ -4,7 +4,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from datetime import datetime
 import pytest
 
-@pytest.mark.parametrize("dados_teste", ["users.json"], indirect=True)
+@pytest.mark.parametrize("dados_teste", ["parameters\\unregistered_users.json"], indirect=True)
 def test_login(
     driver:WebDriver, 
     waits:Waits,
@@ -22,14 +22,14 @@ def test_login(
     """
     duracoes = []
     
-    for nome, email, senha, esperado in dados_teste:
+    for index, dados in enumerate(dados_teste):
         inicio = datetime.now()
         
-        user_name = nome
+        index = index + 1
         
-        user_email = email
+        print(f"{index}")
         
-        user_password = senha
+        user_email, user_password = dados
         
         url = "http://medidasincendio.test/login"
         
@@ -49,45 +49,21 @@ def test_login(
         
         button_login.click()
         
-        sleep(5)
-        
-        try:
-            name_logged = waits.wait_visibility(
-                {
-                    "css_selector" : "div.hidden.sm\\:flex.sm\\:items-center.sm\\:ml-6 > div > div:nth-child(1) > button > div:nth-child(1)"
-                }, time=3
-            )
-            
-            name_logged = name_logged.text
-            
-        except:
-            name_logged = None
-        
-        name_check = name_logged == user_name 
-        
-        print(nome, email, senha, esperado)
-        
-        if esperado:
-            
-            assert name_check == esperado
-            assert driver.current_url == "http://medidasincendio.test/dashboard"
-            
-            sair = waits.wait_presence(
-                {"css_selector" : 'a[href="http://medidasincendio.test/logout"]'}
-            )
+        sleep(4)
 
-            driver.execute_script(
-                "arguments[0].click()",
-                sair
-            )
-            
-        else:
-             assert name_check == esperado
+        auth_message = waits.wait_visibility(
+            {"css_selector" : 'ul[class="text-sm text-red-600 space-y-1 mt-2"] li'},
+            time=3
+        )
+    
+        auth_message = auth_message.text
+        
+        assert auth_message == "auth.failed"
             
         fim = datetime.now()
         
         check = fim - inicio
         
-        duracoes.append(check)
+        duracoes.append(f"{check.seconds}:{check.microseconds}")
         
     print(duracoes)

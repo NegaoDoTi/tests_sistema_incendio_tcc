@@ -1,11 +1,10 @@
 from utils.waits import Waits
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
-from json import load
 from datetime import datetime
 import pytest
 
-@pytest.mark.parametrize("dados_teste", ["users.json"], indirect=True)
+@pytest.mark.parametrize("dados_teste", ["parameters\\empty_users.json"], indirect=True)
 
 def test_register(driver:WebDriver, waits:Waits, dados_teste) -> None:
     """Teste de registro de usuarios CT2
@@ -18,14 +17,14 @@ def test_register(driver:WebDriver, waits:Waits, dados_teste) -> None:
     
     duracoes = []
     
-    for nome, email, senha, esperado in dados_teste:
+    for index, dados in enumerate(dados_teste):
+        index = index + 1
+        
+        print(f"{index}")
+        
+        user_name, user_email, user_password = dados
+        
         inicio = datetime.now()
-    
-        user_name = nome
-        
-        user_email = email
-        
-        user_password = senha
         
         url = "http://medidasincendio.test/register"
         
@@ -55,51 +54,27 @@ def test_register(driver:WebDriver, waits:Waits, dados_teste) -> None:
         
         button_register.click()
         
-        sleep(5)
+        sleep(3)
         
-        try:
-            name_logged = waits.wait_visibility(
-                {
-                    "css_selector" : "div.hidden.sm\\:flex.sm\\:items-center.sm\\:ml-6 > div > div:nth-child(1) > button > div:nth-child(1)"
-                }, time=3
-            )
+        if not user_name:
+            is_invalid = driver.execute_script("return arguments[0].checkValidity();", name_input)
+                
+            assert not is_invalid
             
-            name_logged = name_logged.text
-            
-        except:
-            name_logged = None
+        if not user_email:
+            is_invalid = driver.execute_script("return arguments[0].checkValidity();", email_input)
+                
+            assert not is_invalid
         
-        
-        name_check = name_logged == user_name
-        
-        print(name_logged, user_name, name_check)
-        
-        print(nome, email, senha, esperado)
-        
-        if esperado:
-            
-            
-            assert name_check == esperado
-            assert driver.current_url == "http://medidasincendio.test/dashboard"
-            
-            sair = waits.wait_presence(
-                {"css_selector" : 'a[href="http://medidasincendio.test/logout"]'},
-                time=3
-            )
-
-            driver.execute_script(
-                "arguments[0].click()",
-                sair
-            )
-            
-            
-        else:
-             assert name_check == esperado
+        if not user_password:
+            is_invalid = driver.execute_script("return arguments[0].checkValidity();", password_input)
+                
+            assert not is_invalid
         
         fim = datetime.now()
         
         check = fim - inicio
         
-        duracoes.append(check)
+        duracoes.append(f"{check.seconds}:{check.microseconds}")
         
     print(duracoes)

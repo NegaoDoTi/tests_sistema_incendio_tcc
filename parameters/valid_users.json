@@ -1,0 +1,12 @@
+[
+    {"nome" : "Joao Um", "email" : "usuario1@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Dois", "email" : "usuario2@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Três", "email" : "usuario3@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Quatro", "email" : "usuario4@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Cinco", "email" : "usuario5@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Seis", "email" : "usuario6@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Sete", "email" : "usuario7@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Oito", "email" : "usuario8@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Nove", "email" : "usuario9@test.com", "password": "senha369@#$"},
+    {"nome" : "Joao Dez", "email" : "usuario10@test.com", "password": "senha369@#$"}
+]

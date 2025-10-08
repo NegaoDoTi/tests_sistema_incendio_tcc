@@ -4,7 +4,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from datetime import datetime
 import pytest
 
-@pytest.mark.parametrize("dados_teste", ["users.json"], indirect=True)
+@pytest.mark.parametrize("dados_teste", ["parameters\\valid_users.json"], indirect=True)
 def test_delete_acount(driver:WebDriver, waits:Waits, dados_teste) -> None:
     """Teste de deletar conta de usuario CT4
 
@@ -13,17 +13,14 @@ def test_delete_acount(driver:WebDriver, waits:Waits, dados_teste) -> None:
         waits (Waits): Waits Selenium
     """
     duracoes = []
-    for nome, email, senha, esperado in dados_teste:
-        if esperado == False:
-            continue
-        
+    for index, dados in enumerate(dados_teste):
         inicio = datetime.now()
         
-        user_name = nome
+        index = index + 1
         
-        user_email = email
+        print(index)
         
-        user_password = senha
+        user_name, user_email, user_password = dados
         
         url = "http://medidasincendio.test/login"
         
@@ -46,11 +43,6 @@ def test_delete_acount(driver:WebDriver, waits:Waits, dados_teste) -> None:
         sleep(5)
         
         try:
-            name_logged = waits.wait_visibility(
-                {
-                    "css_selector" : "div.hidden.sm\\:flex.sm\\:items-center.sm\\:ml-6 > div > div:nth-child(1) > button > div:nth-child(1)"
-                }
-            )
         
             driver.get("http://medidasincendio.test/profile")
             
@@ -88,7 +80,7 @@ def test_delete_acount(driver:WebDriver, waits:Waits, dados_teste) -> None:
         
         check = fim - inicio
         
-        duracoes.append(check)
+        duracoes.append(f"{check.seconds}:{check.microseconds}")
     
     print(duracoes)
         
