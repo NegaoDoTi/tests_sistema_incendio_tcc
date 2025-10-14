@@ -1,0 +1,12 @@
+[
+    {"nome": "", "tipo": "Auditório", "capacidade": 256, "foto local": "local11.jpg", "foto mapa": "mapa11.jpg"},
+    {"nome": "Local 11", "tipo": "", "capacidade": 256, "foto local": "local11.jpg", "foto mapa": "mapa11.jpg"},
+    {"nome": "Local 11", "tipo": "Auditório", "capacidade": "", "foto local": "local11.jpg", "foto mapa": "mapa11.jpg"},
+    {"nome": "Local 11", "tipo": "Auditório", "capacidade": 256, "foto local": "", "foto mapa": "mapa11.jpg"},
+    {"nome": "Local 11", "tipo": "Auditório", "capacidade": 256, "foto local": "local11.jpg", "foto mapa": ""},
+    {"nome": "", "tipo": "", "capacidade": 256, "foto local": "local11.jpg", "foto mapa": "mapa11.jpg"},
+    {"nome": "", "tipo": "", "capacidade": "", "foto local": "local11.jpg", "foto mapa": "mapa11.jpg"},
+    {"nome": "", "tipo": "", "capacidade": "", "foto local": "", "foto mapa": "mapa11.jpg"},
+    {"nome": "", "tipo": "", "capacidade": 256, "foto local": "", "foto mapa": ""},
+    {"nome": "Local 11", "tipo": "Auditório", "capacidade": 256, "foto local": "local11.jpg", "foto mapa": "mapa11.jpg"}
+]

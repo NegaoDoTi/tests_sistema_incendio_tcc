@@ -86,7 +86,7 @@ def test_cadastrar_local(
         photo_button.click()
         sleep(0.5)
         
-        local_image_path = Path(Path(__file__).parent.parent, "images", f'{foto_local}')
+        local_image_path = Path(Path(__file__).parent.parent.parent, "images", f'{foto_local}')
         
         add_photo = waits.wait_presence({"css_selector" : 'input[id="nova_foto"]'})
         
@@ -101,7 +101,7 @@ def test_cadastrar_local(
         
         confirm_img_button.click()
         
-        map_image_path = Path(Path(__file__).parent.parent, "images", f'{foto_mapa}')
+        map_image_path = Path(Path(__file__).parent.parent.parent, "images", f'{foto_mapa}')
         
         image_map_input = waits.wait_visibility({"css_selector" : 'input[id="mapa"]'})
         

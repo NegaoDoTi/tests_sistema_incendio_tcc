@@ -1,0 +1,12 @@
+[
+    {"nome": null, "descrição": "teste de texto", "icone": "icone11.png", "foto": "foto11.png"},
+    {"nome": "medida11", "descrição": null, "icone": "icone11.png", "foto": "foto11.png"},
+    {"nome": "medida11", "descrição": "teste de texto", "icone": null, "foto": "foto11.png"},
+    {"nome": "medida11", "descrição": "teste de texto", "icone": "icone11.png", "foto": null},
+    {"nome": null, "descrição": null, "icone": "icone11.png", "foto": "foto11.png"},
+    {"nome": null, "descrição": "teste de texto", "icone": null, "foto": "foto11.png"},
+    {"nome": null, "descrição": "teste de texto", "icone": "icone11.png", "foto": null},
+    {"nome": "medida11", "descrição": null, "icone": null, "foto": "foto11.png"},
+    {"nome": "medida11", "descrição": null, "icone": "icone11.png", "foto": null},
+    {"nome": null, "descrição": null, "icone": null, "foto": null}
+]
