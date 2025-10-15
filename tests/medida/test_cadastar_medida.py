@@ -4,9 +4,10 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import Select
 from datetime import datetime
 from pathlib import Path
+from json import loads
 import pytest
 
-@pytest.mark.parametrize("dados_teste", ["parameters\\valid_medidas.json"])
+@pytest.mark.parametrize("dados_teste", ["parameters\\valid_medidas.json"], indirect=True)
 def test_cadastrar_medida(
     driver:WebDriver, 
     waits:Waits, 
@@ -41,12 +42,6 @@ def test_cadastrar_medida(
     
     button_login.click()
         
-    driver.get('http://medidasincendio.test/locais/74')
-    
-    register_medida_btn = waits.wait_clickable({'css_selector' : 'aside.max-w-xl.w-full + section h2:nth-of-type(2) a button'})
-    register_medida_btn.click()
-    
-    sleep(5)
     
     duracoes = []
     for i, dados in enumerate(dados_teste):
@@ -56,12 +51,24 @@ def test_cadastrar_medida(
         i+=1
         
         nome, descricao, icone, foto = dados
+        
+        
+        driver.get('http://medidasincendio.test/locais/74')
+    
+        sleep(2)
+        
+        register_medida_btn = waits.wait_clickable({'css_selector' : 'h2:nth-child(5) > a > button'})
+        register_medida_btn.click()
+        
+        sleep(3)
 
         tipo_medida = waits.wait_visibility(
             {
                 "css_selector" : 'select[id="tipo_id"]'
             }
         )
+        
+        sleep(1)
         
         tipo_medida_select = Select(tipo_medida)
         tipo_medida_select.select_by_value("novo")
@@ -78,25 +85,33 @@ def test_cadastrar_medida(
         add_foto = waits.wait_presence({"css_selector" : 'input#foto'})
         add_icone = waits.wait_presence({"css_selector" : 'input#icone'})
         
-        try:
-            add_foto.send_keys(f"{foto_path.absolute()}")
-            add_icone.send_keys(f"{icone_path.absolute()}")
+        print(f"Teste numero {i}")
+        print(f"{foto_path.absolute()}")
+        
+        add_foto.send_keys(f"{foto_path.absolute()}")
+        add_icone.send_keys(f"{icone_path.absolute()}")
             
-        except:
-            driver.execute_script(f'arguments[0].value = "{foto_path.absolute()}"', foto_path)
-            driver.execute_script(f'arguments[0].value = "{icone_path.absolute()}"', icone_path)
         
         button_submit = waits.wait_clickable({"css_selector": 'form#tipoMedidaForm button[type=submit]'})
         button_submit.click()
         
-        assert "/tipos_medidas" in driver.current_url
+        sleep(2)
         
+        pre = waits.wait_visibility(
+            {"css_selector" : 'pre'},
+            time=3
+        )
+        
+        resultado = pre.get_attribute("innerText")
+        
+        resultado = loads(resultado)
+        
+        assert nome.capitalize() == resultado["nome"]    
+                
         fim = datetime.now()
         
         check = fim - inicio
         
         duracoes.append(f"{check.seconds}:{check.microseconds}")
-                
-        driver.navigate().back()
-    
+                    
     print(duracoes)

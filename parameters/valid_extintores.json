@@ -1,0 +1,12 @@
+[
+    {"selo": "XABC01", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Agua"},
+    {"selo": "XABC02", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Gás Carbônico"},
+    {"selo": "XABC03", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Pó Químico B/C"},
+    {"selo": "XABC04", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Pó Químico A/B/C"},
+    {"selo": "XABC05", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Espuma mecânica"},
+    {"selo": "XABC06", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Agua"},
+    {"selo": "XABC07", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Gás Carbônico"},
+    {"selo": "XABC08", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Pó Químico B/C"},
+    {"selo": "XABC09", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Pó Químico A/B/C"},
+    {"selo": "XABC10", "capacidade": 2, "validade": "2026-12-12", "localizacao": "Local 01", "tipo de extintor": "Espuma mecânica"}
+]
